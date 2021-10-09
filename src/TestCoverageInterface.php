@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Quillstack\TestCoverage;
+
 interface TestCoverageInterface
 {
     public function start(): void;

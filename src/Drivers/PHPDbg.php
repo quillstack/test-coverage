@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Quillstack\TestCoverage\Drivers;
+
 class PHPDbg implements TestCoverageDriverInterface
 {
     private array $data = [];

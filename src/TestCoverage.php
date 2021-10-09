@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Quillstack\TestCoverage;
+
 class TestCoverage implements TestCoverageInterface
 {
     public function __construct(
