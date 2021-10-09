@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Quillstack\TestCoverage\CoverageOutput;
 
+use Quillstack\TestCoverage\TestCoverageOutputInterface;
+
 class CoverageXml implements TestCoverageOutputInterface
 {
     public function generate(array $input): string
