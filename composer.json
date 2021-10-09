@@ -1,0 +1,31 @@
+{
+    "name": "quillstack/test-coverage",
+    "description": "A library to create test coverage in PHP.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "quillstack",
+        "php",
+        "php8",
+        "tests",
+        "coverage"
+    ],
+    "homepage": "https://quillstack.org/unit-tests",
+    "authors": [
+        {
+            "name": "Radek Ziemniewicz",
+            "email": "radek@quillstack.org"
+        }
+    ],
+    "bin": ["bin/unit-tests"],
+    "autoload": {
+        "psr-4": {
+            "Quillstack\\TestCoverage\\": "src/",
+            "Quillstack\\Tests\\Unit\\TestCoverage\\": "tests/unit/"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "quillstack/local-storage": "^0.0.1"
+    }
+}
