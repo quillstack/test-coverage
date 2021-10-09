@@ -9,10 +9,9 @@ addons:
     sonarcloud:
         organization: "quillstack"
         token:
-            secure: "Ei4z/5wABTyvL3oL1pldoliugl5xY0dmgkFlxKaaUsVtV2APv3gdY1u95tBtGM+Hzrwz7O6RTqBKrSMDpqOCeRJ2bbYVoEMXKyUAjvUFJKGSLXo2qXe5gJEn9tiGfqqfFm6EcSN4d/1stvobMrjzBpULvZi5gTP93IoCVjKPuoffturtutYZ/QZhXBjihCsaKoV0crMRKU4o6v5Qpw3H7g5e5JrXAU/IRe/Ka9b4fl4eGvGP3J9RKqDWVKFAydbgCbeYCfAswtDenQPeoBhkt88ykdyzLjcICA3Lkzt14oA4L8YbTP8Fbb2+E0vttxJloc1Hdbspa9YjzyeuIX1CPB9suRkhilXCO/o+z4nyBqUI89Q+w5t/8pGtrDiBzXnTn/p2zEPjHI3Fhz6FTdNNGgV4YnUOfTtYucNz/9XWG7XEUyyPMJjuF6JhAeg+WJqS0hMuPpZ+sm22aFrvGeMPcEFYEmkwktuxTa5NArK1OUB7RNVciH6YSoYko90uHHOblhzVLCkG4M+O7JMnNjs0t2/OSiIKgzzsg8kj9oDjvq3PjRLOh0CVkcVDOdQj6uolptnj98pjdSrVAu7Junq5VVRxmqbDf8GeHG9euHqXVGh5Jxr/UKQqcnSBmUOiuOTsvX6Ys4vdZ8MsGZA//izpYVH+qWth4YXekbhI3YCyY/w="
+            secure: "JD7o8k5rF47wMjwlpHobP/l6LUUC7zZQ6KjK2mhyO2j0l45XDYLnzTWKW2RVIJTYBKtkPofm9axO8J+g5nu8xJ9E+5S6I+OYRRySA5oOKlwODYqfeYj9PY35j5emy30F6clJG0g9oyXREuenOCd/2E1g5IAjFFUL3MiFEjcsJQJtY0XG0d1ah83TcQbRcrNd1UYj+Mio6rqHM542pUwSltbrL+aPqUbMCHPOfWDbLamqAjSrumWEZkvoF1DyQbHzFVmCxBdlaE354oQt4Cd307GT6EOWdy7aqqnayjIvUlxHeZm4AknaQbfuq0A/0N5MuOw6rzewoIqsYJu+V8Krjyf33XfESOQzq+Mb1/I5OCeLElPGa3pvwU1FtlCaaOf6GZJlCkfMU3kVYBuRyjK6n+98ULwZbALHqa0GScJcf/K4JXWh9VodP6+4HEQRHiXeqCjc+R0IiGOAHntA1srfjViUAJamTfsw/TKfdrF4SfAlLyB5oJ2cF+GMbCxYpR4AZz4eDF1qvj49620/HQOhTZovPY97TXYwkzuQJ28LKLapsIwRGXRcdGngA5H9SazPo/xUhUZmG2EyO2b9sVJseMIf2tagKCJXsr9QNF0N3QJ17AeEY54YUtbyTo5rH8pKowX+0a3ca+BKqIO3xZUm19lTnn+LvrvKcATqG55BxzA="
 git:
     depth: false
 install: composer update --no-interaction --no-suggest --no-progress
 script:
-    - phpdbg -qrr ./bin/local
     - sonar-scanner
