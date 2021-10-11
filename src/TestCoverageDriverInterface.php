@@ -19,5 +19,5 @@ interface TestCoverageDriverInterface
     /**
      * Processes all data to create an output array.
      */
-    public function process(): array;
+    public function process(string $dir = __DIR__): array;
 }

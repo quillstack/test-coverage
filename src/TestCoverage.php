@@ -32,9 +32,9 @@ class TestCoverage implements TestCoverageInterface
     /**
      * {@inheritDoc}
      */
-    public function process(): string
+    public function process(string $dir = __DIR__): string
     {
-        $output = $this->driver->process();
+        $output = $this->driver->process($dir);
 
         return $this->output->generate($output);
     }
