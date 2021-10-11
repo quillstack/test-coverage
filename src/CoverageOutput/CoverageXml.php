@@ -19,8 +19,8 @@ class CoverageXml implements TestCoverageOutputInterface
 
             foreach ($lines as $line => $value) {
                 $row = $class->addChild('line');
-                $row->addAttribute('num', $line);
-                $row->addAttribute('count', $value);
+                $row->addAttribute('num', (string) $line);
+                $row->addAttribute('count', (string) $value);
             }
         }
 
