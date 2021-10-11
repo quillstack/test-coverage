@@ -23,9 +23,10 @@ class TestCoverage implements TestCoverageInterface
         $this->driver->end();
     }
 
-    public function process(): void
+    public function process(): string
     {
         $output = $this->driver->process();
-        $this->output->generate($output);
+
+        return $this->output->generate($output);
     }
 }
