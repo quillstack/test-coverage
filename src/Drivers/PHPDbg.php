@@ -10,16 +10,25 @@ class PHPDbg implements TestCoverageDriverInterface
 {
     private array $data = [];
 
+    /**
+     * {@inheritDoc}
+     */
     public function start(): void
     {
         \phpdbg_start_oplog();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function end(): void
     {
         $this->data = \phpdbg_end_oplog();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function process(): array
     {
         $result = [];

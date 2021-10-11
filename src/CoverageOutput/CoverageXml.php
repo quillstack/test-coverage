@@ -8,6 +8,9 @@ use Quillstack\TestCoverage\TestCoverageOutputInterface;
 
 class CoverageXml implements TestCoverageOutputInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function generate(array $input): string
     {
         $xml = new \SimpleXMLElement('<coverage/>');

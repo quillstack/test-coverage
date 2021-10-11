@@ -13,16 +13,25 @@ class TestCoverage implements TestCoverageInterface
         //
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function start(): void
     {
         $this->driver->start();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function end(): void
     {
         $this->driver->end();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function process(): string
     {
         $output = $this->driver->process();
