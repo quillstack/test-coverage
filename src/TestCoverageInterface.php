@@ -8,5 +8,5 @@ interface TestCoverageInterface
 {
     public function start(): void;
     public function end(): void;
-    public function process(): void;
+    public function process(): string;
 }
