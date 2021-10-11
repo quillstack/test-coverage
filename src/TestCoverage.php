@@ -13,19 +13,28 @@ class TestCoverage implements TestCoverageInterface
         //
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function start(): void
     {
         $this->driver->start();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function end(): void
     {
         $this->driver->end();
     }
 
-    public function process(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function process(string $dir = __DIR__): string
     {
-        $output = $this->driver->process();
+        $output = $this->driver->process($dir);
 
         return $this->output->generate($output);
     }

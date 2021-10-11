@@ -19,8 +19,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Quillstack\\TestCoverage\\": "src/",
-            "Quillstack\\Tests\\Unit\\TestCoverage\\": "tests/unit/"
+            "Quillstack\\TestCoverage\\": "src/"
         }
     },
     "require": {
