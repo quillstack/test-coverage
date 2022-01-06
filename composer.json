@@ -10,6 +10,7 @@
         "tests",
         "coverage"
     ],
+    "minimum-stability": "dev",
     "homepage": "https://quillstack.org/unit-tests",
     "authors": [
         {
@@ -18,11 +19,16 @@
         }
     ],
     "autoload": {
-        "psr-4": {
-            "Quillstack\\TestCoverage\\": "src/"
-        }
+        "classmap": [
+            "src/"
+        ]
     },
     "require": {
         "php": "^8.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        }
     }
 }
