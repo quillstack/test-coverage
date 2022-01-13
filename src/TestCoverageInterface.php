@@ -19,5 +19,5 @@ interface TestCoverageInterface
     /**
      * Processes created array and generate a string depending on a coverage output (XML, HTML, console output, etc.).
      */
-    public function process(string $dir = __DIR__): string;
+    public function process(string $dir = __DIR__, string $rootDir = ''): string;
 }
