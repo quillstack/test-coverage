@@ -5,10 +5,21 @@ declare(strict_types=1);
 namespace Quillstack\TestCoverage\Drivers;
 
 use Quillstack\TestCoverage\TestCoverageDriverInterface;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use Throwable;
 
 class PHPDbg implements TestCoverageDriverInterface
 {
     private array $data = [];
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function isAvailable(): bool
+    {
+        return function_exists('phpdbg_start_oplog');
+    }
 
     /**
      * {@inheritDoc}
@@ -31,9 +42,41 @@ class PHPDbg implements TestCoverageDriverInterface
      */
     public function process(string $dir = __DIR__): array
     {
+        $this->compileFilesNeverLoaded($dir);
         $results = $this->createResultsArray($dir);
 
         return $this->createOutputArray($dir, $results);
+    }
+
+    /**
+     * A file which no test ever loaded is never compiled, so phpdbg knows nothing about it
+     * and it would silently drop out of the report, making the coverage look better than it
+     * is. Compiling those files first puts their lines back into the total, uncovered.
+     */
+    private function compileFilesNeverLoaded(string $dir): void
+    {
+        if (!is_dir($dir)) {
+            return;
+        }
+
+        $included = array_flip(get_included_files());
+        $files = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS)
+        );
+
+        foreach ($files as $file) {
+            $path = $file->getRealPath();
+
+            if (!$path || !str_ends_with($path, '.php') || isset($included[$path])) {
+                continue;
+            }
+
+            try {
+                require_once $path;
+            } catch (Throwable) {
+                // A file which cannot be loaded on its own is left out of the report.
+            }
+        }
     }
 
     /**
@@ -70,11 +113,7 @@ class PHPDbg implements TestCoverageDriverInterface
             }
 
             foreach ($coverage as $line => $value) {
-                if (isset($results[$file][$line])) {
-                    $output[$file][$line] = $results[$file][$line];
-                } else {
-                    $output[$file][$line] = $value;
-                }
+                $output[$file][$line] = $results[$file][$line] ?? 0;
             }
         }
 
