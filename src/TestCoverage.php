@@ -6,6 +6,9 @@ namespace Quillstack\TestCoverage;
 
 class TestCoverage implements TestCoverageInterface
 {
+    /**
+     * @var array<string, array<int, int>>
+     */
     private array $lastOutput = [];
 
     public function __construct(

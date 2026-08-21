@@ -37,6 +37,8 @@ class NoCoverage implements TestCoverageDriverInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<string, array<int, int>>
      */
     public function process(string $dir = __DIR__): array
     {

@@ -32,6 +32,6 @@ class CoverageXml implements TestCoverageOutputInterface
             }
         }
 
-        return $xml->asXML();
+        return (string) $xml->asXML();
     }
 }
