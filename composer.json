@@ -1,6 +1,6 @@
 {
     "name": "quillstack/test-coverage",
-    "description": "A library to create test coverage in PHP.",
+    "description": "A library to create test coverage reports in PHP.",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -32,11 +32,18 @@
         }
     },
     "require-dev": {
-        "phpstan/phpstan": "^2.0"
+        "phpstan/phpstan": "^2.0",
+        "quillstack/unit-tests": "^0.9"
     },
     "scripts": {
         "test": "unit-tests",
         "test:coverage": "phpdbg -qrr vendor/bin/unit-tests",
         "stan": "phpstan analyse"
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Quillstack\\TestCoverage\\Tests\\": "tests/"
+        }
+    },
+    "prefer-stable": true
 }
