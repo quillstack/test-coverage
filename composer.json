@@ -11,7 +11,7 @@
         "coverage"
     ],
     "minimum-stability": "dev",
-    "homepage": "https://quillstack.org/unit-tests",
+    "homepage": "https://quillstack.org/packages/test-coverage",
     "authors": [
         {
             "name": "Radek Ziemniewicz",
