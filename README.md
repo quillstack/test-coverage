@@ -20,18 +20,28 @@ What [quillstack/unit-tests](https://github.com/quillstack/unit-tests) uses to s
 a package its tests actually run, and to write the report SonarCloud reads. It needs no
 extension: coverage comes from phpdbg, which ships with PHP.
 
-### Requirements
+## Why this exists
+
+Coverage in PHP usually means Xdebug or PCOV — an extension to install, in development and in
+CI, before a number appears. This uses `phpdbg`, which ships with PHP itself, so measuring what
+the tests reached needs nothing that is not already there.
+
+It also counts **a file no test loaded at all**, which is the number that matters most and the
+one an incomplete report quietly leaves out. A class nobody instantiated is not absent from the
+report; it is zero per cent of it.
+
+## Requirements
 
 - PHP 8.1 or newer
 - phpdbg, to measure anything — without it the tests still run, just without a number
 
-### Installation
+## Installation
 
 ```shell
 composer require --dev quillstack/test-coverage
 ```
 
-### Usage
+## Usage
 
 ```php
 use Quillstack\TestCoverage\CoverageOutput\CoverageXml;
@@ -69,7 +79,7 @@ total as uncovered.
 It is not a small difference: it took one package in this stack from a reported 94.6% to an
 honest 80.3%.
 
-### Technical documentation
+## Technical documentation
 
 | Class | What it is |
 | --- | --- |
@@ -94,7 +104,30 @@ A driver implements `TestCoverageDriverInterface` (`isAvailable()`, `start()`, `
 `process()`), and an output implements `TestCoverageOutputInterface` (`generate()`) — so
 another way of measuring, or another format, is one class either way.
 
-### Unit tests
+## Benchmark
+
+There is no timing table here, and the reason is worth a sentence rather than a number.
+
+Coverage is collected by the runtime — `phpdbg` here, Xdebug or PCOV for
+[phpunit/php-code-coverage](https://github.com/sebastianbergmann/php-code-coverage) — and what
+that costs is a property of the extension, not of the library reading its output. Timing the two
+libraries would be timing three different collectors and calling the difference ours.
+
+What can be compared honestly is what each brings with it:
+
+| | Version | Installed | Packages |
+| --- | --- | --- | --- |
+| **quillstack/test-coverage** | v0.6.3 | **120 kB** | 1 |
+| phpunit/php-code-coverage | 11.0.12 | 1.4 MB | 11 |
+
+**And what those eleven packages buy is real**: branch and path coverage, not just lines; HTML,
+Clover, Cobertura, Crap4J and PHP report formats; a static analysis pass that knows which lines
+are executable before anything runs; and support for Xdebug and PCOV as well as phpdbg. This
+produces line coverage and a Clover file.
+
+If you already have Xdebug and want branch coverage or an HTML report, that is the one to use.
+
+## Tests
 
 ```shell
 composer test
@@ -107,6 +140,15 @@ time and starting a second inside this suite would take its own measurement away
 That work therefore does not show up in this package's own percentage: the seven lines it
 reports as uncovered are the ones only a live log reaches, and they are tested out there.
 
-### License
+## The rest of Quillstack
+
+This is one component of [Quillstack](https://github.com/quillstack), a PHP framework which is
+as simple to use as it is strict about what it does.
+
+- [quillstack/unit-tests](https://github.com/quillstack/unit-tests) — which runs the tests being measured
+- [quillstack/benchmark](https://github.com/quillstack/benchmark) — how long things take, rather than what ran
+- [quillstack/standards](https://github.com/quillstack/standards) — which checks a package is as it should be
+
+## License
 
 MIT. See [LICENSE](LICENSE).
